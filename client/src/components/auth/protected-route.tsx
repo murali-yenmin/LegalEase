@@ -1,5 +1,6 @@
 import { useAuth } from "@/hooks/use-auth";
-import { Navigate } from "wouter";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -13,6 +14,13 @@ export const ProtectedRoute = ({
   fallback = "/login" 
 }: ProtectedRouteProps) => {
   const { isAuthenticated, hasRole, isLoading } = useAuth();
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      setLocation(fallback);
+    }
+  }, [isAuthenticated, isLoading, fallback, setLocation]);
 
   if (isLoading) {
     return (
@@ -23,7 +31,7 @@ export const ProtectedRoute = ({
   }
 
   if (!isAuthenticated) {
-    return <Navigate to={fallback} replace />;
+    return null;
   }
 
   if (roles.length > 0 && !hasRole(roles)) {
