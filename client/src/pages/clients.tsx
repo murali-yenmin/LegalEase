@@ -208,7 +208,7 @@ export default function Clients() {
                   <SelectValue placeholder="All Types" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Types</SelectItem>
+                  <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="individual">Individual</SelectItem>
                   <SelectItem value="corporate">Corporate</SelectItem>
                   <SelectItem value="government">Government</SelectItem>

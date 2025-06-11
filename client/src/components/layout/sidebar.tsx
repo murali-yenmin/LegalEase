@@ -134,7 +134,7 @@ const NavSection = ({ title, items, currentPath, userRole }: NavSectionProps) =>
       </p>
       {filteredItems.map((item) => (
         <Link key={item.path} href={item.path}>
-          <a
+          <div
             className={cn(
               "sidebar-nav-item",
               currentPath === item.path && "active"
@@ -150,7 +150,7 @@ const NavSection = ({ title, items, currentPath, userRole }: NavSectionProps) =>
                 {item.badge}
               </Badge>
             )}
-          </a>
+          </div>
         </Link>
       ))}
     </div>
@@ -172,7 +172,7 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
         {/* Main Navigation */}
         {navigationItems.map((item) => (
           <Link key={item.path} href={item.path}>
-            <a
+            <div
               className={cn(
                 "sidebar-nav-item",
                 location === item.path && "active"
@@ -180,7 +180,7 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
             >
               <item.icon className="w-5 h-5" />
               <span>{item.label}</span>
-            </a>
+            </div>
           </Link>
         ))}
 

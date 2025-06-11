@@ -57,7 +57,7 @@ export default function Cases() {
     setFilters(prev => ({
       ...prev,
       [key]: value,
-      page: key !== "page" ? 1 : value, // Reset to page 1 when filtering
+      page: key !== "page" ? 1 : (typeof value === "number" ? value : 1), // Reset to page 1 when filtering
     }));
   };
 
@@ -120,7 +120,7 @@ export default function Cases() {
                   <SelectValue placeholder="All Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Status</SelectItem>
+                  <SelectItem value="all">All Status</SelectItem>
                   <SelectItem value="active">Active</SelectItem>
                   <SelectItem value="pending">Pending</SelectItem>
                   <SelectItem value="completed">Completed</SelectItem>
@@ -136,7 +136,7 @@ export default function Cases() {
                   <SelectValue placeholder="All Types" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Types</SelectItem>
+                  <SelectItem value="all">All Types</SelectItem>
                   <SelectItem value="civil">Civil</SelectItem>
                   <SelectItem value="criminal">Criminal</SelectItem>
                   <SelectItem value="corporate">Corporate</SelectItem>
@@ -152,7 +152,7 @@ export default function Cases() {
                   <SelectValue placeholder="All Staff" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Staff</SelectItem>
+                  <SelectItem value="all">All Staff</SelectItem>
                   <SelectItem value="john-smith">John Smith</SelectItem>
                   <SelectItem value="sarah-williams">Sarah Williams</SelectItem>
                 </SelectContent>
