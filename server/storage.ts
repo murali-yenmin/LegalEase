@@ -88,13 +88,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getCases(filters: any): Promise<any> {
-    let query = db.select().from(cases);
-    
-    if (filters.search) {
-      query = query.where(like(cases.title, `%${filters.search}%`));
-    }
-    
-    const allCases = await query.orderBy(desc(cases.createdAt)).execute();
+    const allCases = await db.select().from(cases).orderBy(desc(cases.createdAt));
     const total = allCases.length;
     const page = filters.page || 1;
     const limit = filters.limit || 10;
@@ -122,13 +116,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getClients(filters: any): Promise<any> {
-    let query = db.select().from(clients);
-    
-    if (filters.search) {
-      query = query.where(like(clients.fullName, `%${filters.search}%`));
-    }
-    
-    const allClients = await query.orderBy(desc(clients.createdAt)).execute();
+    const allClients = await db.select().from(clients).orderBy(desc(clients.createdAt));
     const total = allClients.length;
     const page = filters.page || 1;
     const limit = filters.limit || 12;

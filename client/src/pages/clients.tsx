@@ -69,7 +69,7 @@ export default function Clients() {
     setFilters(prev => ({
       ...prev,
       [key]: value,
-      page: key !== "page" ? 1 : value,
+      page: key !== "page" ? 1 : (typeof value === "number" ? value : 1),
     }));
   };
 
@@ -223,7 +223,7 @@ export default function Clients() {
                   <SelectValue placeholder="All Status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Status</SelectItem>
+                  <SelectItem value="all">All Status</SelectItem>
                   <SelectItem value="active">Active</SelectItem>
                   <SelectItem value="inactive">Inactive</SelectItem>
                   <SelectItem value="prospect">Prospect</SelectItem>
