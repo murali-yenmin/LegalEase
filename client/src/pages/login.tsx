@@ -11,11 +11,12 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Scale, Eye, EyeOff, Loader2 } from "lucide-react";
-import { Navigate } from "wouter";
+import { useLocation } from "wouter";
 
 export default function Login() {
   const { login, isAuthenticated } = useAuth();
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<LoginCredentials>({
@@ -52,7 +53,8 @@ export default function Login() {
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
+    setLocation("/dashboard");
+    return null;
   }
 
   return (

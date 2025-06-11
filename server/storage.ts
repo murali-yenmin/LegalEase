@@ -128,7 +128,7 @@ export class DatabaseStorage implements IStorage {
       query = query.where(like(clients.fullName, `%${filters.search}%`));
     }
     
-    const allClients = await query.orderBy(desc(clients.createdAt));
+    const allClients = await query.orderBy(desc(clients.createdAt)).execute();
     const total = allClients.length;
     const page = filters.page || 1;
     const limit = filters.limit || 12;
